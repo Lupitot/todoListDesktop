@@ -1,0 +1,111 @@
+[
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PySide6",
+        "description": "PySide6",
+        "isExtraImport": true,
+        "detail": "PySide6",
+        "documentation": {}
+    },
+    {
+        "label": "MainWidget",
+        "importPath": "todoListe.todoListe",
+        "description": "todoListe.todoListe",
+        "isExtraImport": true,
+        "detail": "todoListe.todoListe",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Window",
+        "importPath": "todoListe.window",
+        "description": "todoListe.window",
+        "isExtraImport": true,
+        "detail": "todoListe.window",
+        "documentation": {}
+    },
+    {
+        "label": "MainWidget",
+        "kind": 6,
+        "importPath": "todoListe.todoListe",
+        "description": "todoListe.todoListe",
+        "peekOfCode": "class MainWidget(QtWidgets.QWidget):\n    def __init__(self):\n        super().__init__()\n        self.listeAdd = []\n        self.currentItem = None\n        with open('todoListe/dataToDo.json', 'r') as f:\n            data = f.read()\n        if data:\n            self.listeAdd = json.loads(data)\n        else:",
+        "detail": "todoListe.todoListe",
+        "documentation": {}
+    },
+    {
+        "label": "MainWidget",
+        "kind": 6,
+        "importPath": "todoListe.todoListeTerminate",
+        "description": "todoListe.todoListeTerminate",
+        "peekOfCode": "class MainWidget(QtWidgets.QWidget):\n    def __init__(self):\n        super().__init__()\n        self.currentItem = None\n        self.listeAddTerminate = []",
+        "detail": "todoListe.todoListeTerminate",
+        "documentation": {}
+    },
+    {
+        "label": "Window",
+        "kind": 6,
+        "importPath": "todoListe.window",
+        "description": "todoListe.window",
+        "peekOfCode": "class Window(QtWidgets.QWidget):\n    def __init__(self):\n        super().__init__()\n        self.widget1 = MainWidget()\n        layout = QtWidgets.QHBoxLayout(self)\n        layout.addWidget(self.widget1)\n        self.setLayout(layout)",
+        "detail": "todoListe.window",
+        "documentation": {}
+    }
+]
