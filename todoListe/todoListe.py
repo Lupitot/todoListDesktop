@@ -1,6 +1,6 @@
 import json
 from PySide6 import QtCore, QtWidgets
-from todoListe.todoListeTerminate import WidgetTerminateTask
+from todoListe.todoListeFinished import WidgetFinishedTask
 
 
 class MainWidget(QtWidgets.QWidget):
@@ -10,7 +10,7 @@ class MainWidget(QtWidgets.QWidget):
         self.listeAdd = []
         self.currentItem = None
         self.ListSelectedItem = None
-        self.widgetTerminate = WidgetTerminateTask()
+        self.widgetFinished = WidgetFinishedTask()
 
 
         with open('dataToDo.json', 'r') as f:
@@ -65,8 +65,8 @@ class MainWidget(QtWidgets.QWidget):
         )
         self.listWidget.setSpacing(5)
 
-        self.buttonTerminate = QtWidgets.QPushButton("Terminate")
-        self.buttonTerminate.setStyleSheet(
+        self.buttonFinished = QtWidgets.QPushButton("Finished")
+        self.buttonFinished.setStyleSheet(
             "background-color  : #3AA183;"
             "color : #FFFFFF;"
             "font-size : 20px;"
@@ -83,12 +83,12 @@ class MainWidget(QtWidgets.QWidget):
             "background-color : #C2C1C1;"
         )
         self.textTodo.setAlignment(QtCore.Qt.AlignCenter) 
-        self.textTerminate = QtWidgets.QLabel("Terminate")
-        self.textTerminate.setStyleSheet(
+        self.textFinished = QtWidgets.QLabel("Finished")
+        self.textFinished.setStyleSheet(
             "font-size : 20px;" 
             "background-color : #C2C1C1;"
         )
-        self.textTerminate.setAlignment(QtCore.Qt.AlignCenter)
+        self.textFinished.setAlignment(QtCore.Qt.AlignCenter)
         
         
 
@@ -97,13 +97,13 @@ class MainWidget(QtWidgets.QWidget):
             
 
         layoutList.addWidget(self.listWidget)
-        layoutList.addWidget(self.widgetTerminate.listWidgetTerminate)
+        layoutList.addWidget(self.widgetFinished.listWidgetFinished)
 
 
         layoutText.addWidget(self.textTodo)
-        layoutText.addWidget(self.textTerminate)
+        layoutText.addWidget(self.textFinished)
 
-        layoutButton.addWidget(self.buttonTerminate)
+        layoutButton.addWidget(self.buttonFinished)
         layoutButton.addWidget(self.buttonDelete)   
 
 
@@ -120,20 +120,18 @@ class MainWidget(QtWidgets.QWidget):
         self.setLayout(layoutMain)
 
 
-        self.widgetTerminate.listWidgetTerminate.itemClicked.connect(self.taskTerminate)
+        self.widgetFinished.listWidgetFinished.itemClicked.connect(self.taskFinished)
         self.listWidget.itemClicked.connect(self.setItemCurrent)
         self.buttonDelete.clicked.connect(self.deleteItemCurrent)
         self.buttonAdd.clicked.connect(self.add)
-        self.buttonTerminate.clicked.connect(self.terminateTask)
+        self.buttonFinished.clicked.connect(self.finishedTask)
         
 
 
     @QtCore.Slot()
 
-    def terminateTask(self):
-
-        print("dans la methode terminateTask",self.currentItem)
-        self.widgetTerminate.terminateTask(self.currentItem)
+    def finishedTask(self):
+        self.widgetFinished.finishedTask(self.currentItem)
         
         current_item = self.currentItem
         self.listeAdd.remove(current_item.text())
@@ -142,14 +140,13 @@ class MainWidget(QtWidgets.QWidget):
             json.dump(self.listeAdd, f)
         
 
-    def taskTerminate(self, item):
-        self.ListSelectedItem = "Terminate"
+    def taskFinished(self, item):
+        self.ListSelectedItem = "Finished"
         self.currentItem = item
 
     def setItemCurrent(self, item):
         self.ListSelectedItem = None
         self.currentItem = item
-        print("je suis selectionné apres : ", self.currentItem.text())
     
     def add(self):
         if(self.inputText.text() == ""):
@@ -168,11 +165,11 @@ class MainWidget(QtWidgets.QWidget):
         current_item = self.currentItem
         print(current_item)
         if current_item is not None:
-            if self.ListSelectedItem == "Terminate":
-                self.widgetTerminate.listeAddTerminate.remove(current_item.text())
-                self.widgetTerminate.listWidgetTerminate.takeItem(self.widgetTerminate.listWidgetTerminate.currentRow()) 
+            if self.ListSelectedItem == "Finished":
+                self.widgetFinished.listeAddFinished.remove(current_item.text())
+                self.widgetFinished.listWidgetFinished.takeItem(self.widgetFinished.listWidgetFinished.currentRow()) 
                 with open('dataTerminate.json', 'w') as f:
-                    json.dump(self.widgetTerminate.listeAddTerminate, f)
+                    json.dump(self.widgetFinished.listeAddFinished, f)
             else:
                 self.listeAdd.remove(current_item.text())
                 self.listWidget.takeItem(self.listWidget.currentRow()) 

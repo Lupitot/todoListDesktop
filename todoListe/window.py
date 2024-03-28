@@ -1,5 +1,4 @@
 from todoListe.todoListe import MainWidget
-# from todoListe.todoListeTerminate import WidgetTerminateTask
 from PySide6 import QtWidgets
 
 
