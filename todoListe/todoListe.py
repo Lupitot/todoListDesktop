@@ -13,7 +13,7 @@ class MainWidget(QtWidgets.QWidget):
         self.widgetFinished = WidgetFinishedTask()
 
 
-        with open('dataToDo.json', 'r') as f:
+        with open('./dataToDo.json', 'r') as f:
             data = f.read()
         if data:
             self.listeAdd = json.loads(data)
@@ -136,7 +136,7 @@ class MainWidget(QtWidgets.QWidget):
         current_item = self.currentItem
         self.listeAdd.remove(current_item.text())
         self.listWidget.takeItem(self.listWidget.currentRow()) 
-        with open('dataToDo.json', 'w') as f:
+        with open('./dataToDo.json', 'w') as f:
             json.dump(self.listeAdd, f)
         
 
@@ -157,7 +157,7 @@ class MainWidget(QtWidgets.QWidget):
         print(self.listeAdd)
         self.inputText.setText("")
         
-        with open('dataToDo.json', 'w') as f:
+        with open('./dataToDo.json', 'w') as f:
             json.dump(self.listeAdd, f)
 
     def deleteItemCurrent(self):
@@ -168,12 +168,12 @@ class MainWidget(QtWidgets.QWidget):
             if self.ListSelectedItem == "Finished":
                 self.widgetFinished.listeAddFinished.remove(current_item.text())
                 self.widgetFinished.listWidgetFinished.takeItem(self.widgetFinished.listWidgetFinished.currentRow()) 
-                with open('dataTerminate.json', 'w') as f:
+                with open('./dataTerminate.json', 'w') as f:
                     json.dump(self.widgetFinished.listeAddFinished, f)
             else:
                 self.listeAdd.remove(current_item.text())
                 self.listWidget.takeItem(self.listWidget.currentRow()) 
-                with open('dataToDo.json', 'w') as f:
+                with open('./dataToDo.json', 'w') as f:
                     json.dump(self.listeAdd, f)
         else:
             print("No item selected")

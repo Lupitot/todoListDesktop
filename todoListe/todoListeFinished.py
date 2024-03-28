@@ -11,7 +11,7 @@ class WidgetFinishedTask(QtWidgets.QWidget):
         
 
         try:
-            with open('../dataTerminate.json', 'r') as f:
+            with open('./dataTerminate.json', 'r') as f:
                 self.listeAddFinished = json.load(f)
         except FileNotFoundError:
             self.listeAddFinished = []
@@ -49,7 +49,7 @@ class WidgetFinishedTask(QtWidgets.QWidget):
         self.listeAddFinished.append(self.currentItemFinished.text())
         print(self.listeAddFinished)
             
-        with open('dataTerminate.json', 'w') as f:
+        with open('./dataTerminate.json', 'w') as f:
             json.dump(self.listeAddFinished, f)
 
 
